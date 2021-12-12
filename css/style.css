@@ -1,0 +1,33 @@
+* {
+  background-color: rgb(241, 236, 255);
+}
+
+
+input {
+  margin-bottom: 6px;
+  margin-right: 8px;
+}
+
+span.warning {
+  color: red;
+  font-style: italic;
+}
+
+
+#submit {
+  background-color: rgb(143, 182, 245);
+  font-weight: bold;
+}
+
+#submit:hover {
+  background-color: rgb(193, 214, 251);
+}
+
+.added-books-section {
+  margin-top: 20px;
+}
+
+div.book {
+  border: 1px solid rgb(34, 34, 34);
+  
+}

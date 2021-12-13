@@ -88,9 +88,7 @@ const renderTable = (book) => {
         { innerText: book.title }
       )
 
-
       bookRow.appendChild(bookTdTitle)
-
 
       const bookTdAuthor = createElement(
         'td',
@@ -100,7 +98,6 @@ const renderTable = (book) => {
 
       bookRow.appendChild(bookTdAuthor)
 
-
       const bookTdPriority = createElement(
         'td',
         { class: 'priority book-cell' },
@@ -109,10 +106,9 @@ const renderTable = (book) => {
 
       bookRow.appendChild(bookTdPriority)
 
-
       const bookTdCategory = createElement(
         'td',
-        { class: book.category.val + 'book-cell' },
+        { class: book.category.val + ' book-cell' },
         { innerText: book.category.desc }
       )
 
@@ -145,9 +141,7 @@ const saveBooksToLocalStorage = (book) => {
   if (!books) {
     books = []
   }
-
   books.push(book)
-
 
   localStorage.setItem('books', JSON.stringify(books))
 }
@@ -160,10 +154,8 @@ const clearForm = () => {
   document.querySelector('#category').selectedIndex = 0
 }
 
-
 const submitForm = (event) => {
   event.preventDefault();
-
 
   // checking for errors when filling in the form
   const ulErrors = document.querySelector('#errors')
@@ -213,14 +205,12 @@ const submitForm = (event) => {
     }
   }
 
-
   saveBooksToLocalStorage(newBook)
 
   clearForm()
 
   renderTable()
 }
-
 
 let form = document.querySelector('#form');
 

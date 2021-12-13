@@ -29,5 +29,5 @@ span.warning {
 
 div.book {
   border: 1px solid rgb(34, 34, 34);
-  
+ width: max-content;
 }

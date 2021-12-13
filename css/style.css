@@ -31,3 +31,28 @@ div.book {
   border: 1px solid rgb(34, 34, 34);
  width: max-content;
 }
+
+.table-container {
+  border: 2px solid rgb(28, 28, 31);
+  width: max-content;
+}
+
+#books-table {
+  width: 1085px;
+}
+
+.thTitle {
+  width: 450px;
+}
+
+.thAuthor {
+  width: 300px;
+}
+
+.thPriority {
+  width: 85px;
+}
+
+.thCategory {
+  width: 250px;
+}

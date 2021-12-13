@@ -30,7 +30,7 @@ let sectionAddedBooks = createElement(
   { innerHTML: '<span class="books">Add your books!</span>' }
 )
 
-document.body.append(sectionAddedBooks)
+document.querySelector('#submit').after(sectionAddedBooks)
 
 
 const submitForm = (event) => {
@@ -93,43 +93,47 @@ const submitForm = (event) => {
 
 
 
+  let spanBooks = document.querySelector('.books')
+  if (!spanBooks) {
+    sectionAddedBooks.innerHTML = '<span class="books">Add your books!</span>'
+  }
 
-  const bookElement = createElement(
-    'div',
-    { class: 'book', id: Date.now() },
+  const bookRow = createElement(
+    'tr',
+    { class: 'book'},
     {}
   )
 
-  const bookTitleElement = createElement(
-    'span',
+  const bookTitleCell = createElement(
+    'td',
     { class: 'title' },
-    { innerText: 'Tytuł: ' + inputTitle.value + '  ' }
+    { innerText: inputTitle.value }
   )
 
-  const bookAuthorElement = createElement(
-    'span',
+  const bookAuthorCell = createElement(
+    'td',
     { class: 'author' },
-    { innerText: 'Autor:  ' + inputAuthor.value + '  ' }
+    { innerText:  inputAuthor.value}
   )
 
-  const bookPriorityElement = createElement(
-    'span',
+  const bookPriorityCell = createElement(
+    'td',
     { class: 'priority' },
-    { innerText: 'Priorytet:  ' + inputPriority.value + '  ' }
+    { innerText: inputPriority.value}
   )
 
-  const bookCategoryElement = createElement(
-    'span',
+  const bookCategoryCell = createElement(
+    'td',
     { class: 'category' },
-    { innerText: 'Kategoria:  ' + select.value  + '  ' }
+    { innerText: select.value }
   )
 
-  bookElement.appendChild(bookTitleElement)
-  bookElement.appendChild(bookAuthorElement)
-  bookElement.appendChild(bookPriorityElement)
-  bookElement.appendChild(bookCategoryElement)
+  bookRow.appendChild(bookTitleCell)
+  bookRow.appendChild(bookAuthorCell)
+  bookRow.appendChild(bookPriorityCell)
+  bookRow.appendChild(bookCategoryCell)
 
-  sectionAddedBooks.appendChild(bookElement)
+  document.querySelector('table#books-table tbody').appendChild(bookRow)
 }
 
 

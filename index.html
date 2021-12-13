@@ -25,14 +25,30 @@
 
       <select id="mySelect">
         <option class="category" value="crime-fiction" selected>Kryminał</option>
-        <option class="category" value="romance" >Romans</option>
+        <option class="category" value="romance">Romans</option>
         <option class="category" value="biography">Biografia</option>
-     </select>
+      </select><br />
 
       <input type="submit" id="submit" value="Submit">
     </form>
 
     <ul id="errors"></ul>
+
+    <div class="table-container">
+      <table id="books-table" border="1">
+        <thead>
+          <tr>
+            <th class="thTitle">Tytuł</th>
+            <th class="thAuthor">Autor</th>
+            <th class="thPriority">Priorytet</th>
+            <th class="thCategory">Kategoria</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
 
   </section>
 

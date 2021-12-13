@@ -112,8 +112,8 @@ const renderTable = (book) => {
 
       const bookTdCategory = createElement(
         'td',
-        { class: book.category.value + 'book-cell' },
-        { innerText: book.category.description }
+        { class: book.category.val + 'book-cell' },
+        { innerText: book.category.desc }
       )
 
       bookRow.appendChild(bookTdCategory)

@@ -16,7 +16,6 @@ const createElement = (elType, elAttrs, elProps) => {
 }
 
 const renderTable = (book) => {
-  console.log('renderowanie tabelki');
 
   const books = JSON.parse(localStorage.getItem('books'))
 
@@ -110,7 +109,7 @@ const renderTable = (book) => {
 
       bookRow.appendChild(bookTdPriority)
 
-    
+
       const bookTdCategory = createElement(
         'td',
         { class: book.category.value + 'book-cell' },
@@ -140,7 +139,6 @@ const renderTable = (book) => {
 
 
 const saveBooksToLocalStorage = (book) => {
-  console.log('zapis do local storage');
 
   let books = JSON.parse(localStorage.getItem('books'))
 
@@ -155,7 +153,7 @@ const saveBooksToLocalStorage = (book) => {
 }
 
 const clearForm = () => {
-  console.log('czyszczenie')
+
   document.querySelector('#title').value = ''
   document.querySelector('#author').value = ''
   document.querySelector('#priority').value = ''
@@ -164,8 +162,6 @@ const clearForm = () => {
 
 
 const submitForm = (event) => {
-  console.log('Działa');
-
   event.preventDefault();
 
 
@@ -179,7 +175,6 @@ const submitForm = (event) => {
   const inputAuthor = document.querySelector('#author')
   const inputPriority = document.querySelector('#priority')
   const selectCategory = document.querySelector('#category')
-  // console.log(inputPriority);
 
 
   if (inputTitle.value.length < 1) {
@@ -228,9 +223,7 @@ const submitForm = (event) => {
 
 
 let form = document.querySelector('#form');
-console.log(form);
 
 form.addEventListener(`submit`, submitForm);
-
 
 renderTable()

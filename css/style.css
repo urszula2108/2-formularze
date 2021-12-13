@@ -1,44 +1,87 @@
 * {
-  background-color: rgb(241, 236, 255);
+  background-color: rgb(25, 100, 107);
 }
 
-
-input {
-  margin-bottom: 6px;
-  margin-right: 8px;
+form#form {
+  text-align: left;
+  width: max-content;
+  margin: auto;
 }
 
-span.warning {
-  color: red;
-  font-style: italic;
+input#title,
+input#author,
+input#priority,
+select#category {
+  margin-bottom: 5px;
+  margin-left: 8px;
+  color: rgb(49, 48, 48);
+  background-color: white;
+  border-color: white;
+  border-radius: 3px;
+  outline: none;
 }
 
-
-#submit {
-  background-color: rgb(143, 182, 245);
+label[for="title"],
+label[for="author"],
+label[for="priority"],
+label[for="category"] {
+  color: rgb(19, 19, 19);
   font-weight: bold;
+  text-shadow: 1px 1px white;
+  letter-spacing: 1px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+input#title:focus,
+input#author:focus,
+input#priority:focus,
+select#category:focus {
+  border-color: rgb(8, 41, 36);
+}
+
+input#submit {
+  margin-top: 25px;
+  background-color: rgb(60, 68, 68);
+  border-color: rgb(50, 59, 59);
+  font-weight: bold;
+  color: black;
 }
 
 #submit:hover {
-  background-color: rgb(193, 214, 251);
+  background-color: rgb(24, 24, 24);
+  border-color: rgb(24, 24, 24);
+  color: azure;
+  font-weight: lighter;
 }
 
 .added-books-section {
   margin-top: 20px;
 }
 
-div.book {
-  border: 1px solid rgb(34, 34, 34);
- width: max-content;
-}
-
-.table-container {
-  border: 2px solid rgb(28, 28, 31);
-  width: max-content;
-}
-
 #books-table {
   width: 1085px;
+  background-color: rgb(109, 179, 184);
+  color: black;
+  font-weight: bolder;
+  margin: auto;
+}
+
+table td,
+table th,
+td.book-ell {
+  border: inset 2px rgb(3, 58, 63);
+  background-color: rgb(109, 179, 184);
+}
+
+td.bookNoTrBooks {
+  padding: 10px 20px;
+  font-style: italic;
+}
+
+td.book-cell {
+  padding: 5px 5px;
+  font-style: italic;
 }
 
 .thTitle {
@@ -46,7 +89,7 @@ div.book {
 }
 
 .thAuthor {
-  width: 300px;
+  width: 250px;
 }
 
 .thPriority {
@@ -55,4 +98,17 @@ div.book {
 
 .thCategory {
   width: 250px;
+}
+
+ul#errors {
+  height: 50px;
+  width: 400px;
+  margin: 20px auto;
+}
+
+li.error {
+  color: red;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-style: italic;
 }

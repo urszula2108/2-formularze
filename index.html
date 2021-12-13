@@ -15,15 +15,17 @@
 
   <section id="form-section">
     <form action="#" id="form">
-      <label for="title"><input type="text" id="title" name="title"
-          placeholder="at least 1 character...">Tytuł</label><br />
+      <label for="title">Tytuł</label>
+      <input type="text" id="title" name="title" placeholder="at least 1 character..."><br />
 
-      <label for="author"><input type="text" id="author" name="author"
-          placeholder="at least 3 characters...">Autor</label><br />
+      <label for="author">Autor</label>
+      <input type="text" id="author" name="author" placeholder="at least 3 characters..."><br />
 
-      <label for="priority"><input type="number" id="priority" name="priority" min="1" max="5">Priorytet</label><br />
+      <label for="priority">Priorytet</label>
+      <input type="number" id="priority" name="priority" min="1" max="5"><br />
 
-      <select id="mySelect">
+      <label for="category">Category</label>
+      <select id="category">
         <option class="category" value="crime-fiction" selected>Kryminał</option>
         <option class="category" value="romance">Romans</option>
         <option class="category" value="biography">Biografia</option>
@@ -34,26 +36,11 @@
 
     <ul id="errors"></ul>
 
-    <div class="table-container">
-      <table id="books-table" border="1">
-        <thead>
-          <tr>
-            <th class="thTitle">Tytuł</th>
-            <th class="thAuthor">Autor</th>
-            <th class="thPriority">Priorytet</th>
-            <th class="thCategory">Kategoria</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+    <div id="table-container">
     </div>
 
 
   </section>
-
-
-
 
   <script src="js/script.js"></script>
 </body>

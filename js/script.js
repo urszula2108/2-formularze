@@ -17,20 +17,150 @@ const createElement = (elType, elAttrs, elProps) => {
 
 const renderTable = (book) => {
   console.log('renderowanie tabelki');
+
+  const books = JSON.parse(localStorage.getItem('books'))
+
+  const booksTableContainer = document.querySelector('#table-container')
+  booksTableContainer.innerHTML = ''
+
+  const booksTable = createElement('table', { id: 'books-table' }, {})
+  booksTableContainer.appendChild(booksTable)
+
+  const tHead = createElement('thead', {}, {})
+  booksTable.appendChild(tHead)
+
+
+  // rendering table <thead> - START
+  const trHead = createElement('tr', { class: 'trHead' }, {})
+
+  tHead.appendChild(trHead)
+
+  const thTitle = createElement(
+    'th',
+    { class: 'thTitle' },
+    { innerText: 'Tytuł' }
+  )
+
+  trHead.appendChild(thTitle)
+
+  const thAuthor = createElement(
+    'th',
+    { class: 'thAuthor' },
+    { innerText: 'Autor' }
+  )
+
+  trHead.appendChild(thAuthor)
+
+  const thPriority = createElement(
+    'th',
+    { class: 'thPriority' },
+    { innerText: 'Priorytet' }
+  )
+
+  trHead.appendChild(thPriority)
+
+  const thCategory = createElement(
+    'th',
+    { class: 'thCategory' },
+    { innerText: 'Kategoria' }
+  )
+
+  trHead.appendChild(thCategory)
+  // rendering table </thead> - END
+
+
+  //rendering table <tbody> - START
+  const tBody = createElement('tbody', {}, {})
+  booksTable.appendChild(tBody)
+
+
+  if (books) {
+
+    for (const book of books) {
+      const bookRow = createElement(
+        'tr',
+        { class: 'book' },
+        {}
+      )
+
+      const bookTdTitle = createElement(
+        'td',
+        { class: 'title book-cell' },
+        { innerText: book.title }
+      )
+
+
+      bookRow.appendChild(bookTdTitle)
+
+
+      const bookTdAuthor = createElement(
+        'td',
+        { class: 'author book-cell' },
+        { innerText: book.author }
+      )
+
+      bookRow.appendChild(bookTdAuthor)
+
+
+      const bookTdPriority = createElement(
+        'td',
+        { class: 'priority book-cell' },
+        { innerText: book.priority }
+      )
+
+      bookRow.appendChild(bookTdPriority)
+
+    
+      const bookTdCategory = createElement(
+        'td',
+        { class: book.category.value + 'book-cell' },
+        { innerText: book.category.description }
+      )
+
+      bookRow.appendChild(bookTdCategory)
+      tBody.appendChild(bookRow)
+    }
+  }
+
+  else {
+
+    const bookRow = createElement('tr', { class: 'book' }, {})
+    tBody.appendChild(bookRow)
+
+    const bookTrNoBooks = createElement(
+      'td',
+      { colspan: '4', class: 'bookNoTrBooks' },
+      { innerText: 'Nie ma jeszcze książek...' }
+    )
+    bookRow.appendChild(bookTrNoBooks)
+  }
+  // rendering table </tbody> - END
+
 }
 
-const saveBooksToLocalStorage = (arrBooks) => {
+
+const saveBooksToLocalStorage = (book) => {
   console.log('zapis do local storage');
+
+  let books = JSON.parse(localStorage.getItem('books'))
+
+  if (!books) {
+    books = []
+  }
+
+  books.push(book)
+
+
+  localStorage.setItem('books', JSON.stringify(books))
 }
 
-
-let sectionAddedBooks = createElement(
-  'section',
-  { class: 'added-books-section', id: Date.now() },
-  { innerHTML: '<span class="books">Add your books!</span>' }
-)
-
-document.querySelector('#submit').after(sectionAddedBooks)
+const clearForm = () => {
+  console.log('czyszczenie')
+  document.querySelector('#title').value = ''
+  document.querySelector('#author').value = ''
+  document.querySelector('#priority').value = ''
+  document.querySelector('#category').selectedIndex = 0
+}
 
 
 const submitForm = (event) => {
@@ -38,6 +168,8 @@ const submitForm = (event) => {
 
   event.preventDefault();
 
+
+  // checking for errors when filling in the form
   const ulErrors = document.querySelector('#errors')
   ulErrors.innerHTML = ''
 
@@ -46,6 +178,7 @@ const submitForm = (event) => {
   const inputTitle = document.querySelector('#title')
   const inputAuthor = document.querySelector('#author')
   const inputPriority = document.querySelector('#priority')
+  const selectCategory = document.querySelector('#category')
   // console.log(inputPriority);
 
 
@@ -57,25 +190,11 @@ const submitForm = (event) => {
     arrErrors.push('Autor powinien mieć conajmniej 3 znaki')
 
   }
-  if (inputPriority.value < 1) {
+  if (inputPriority.value < 1 || inputPriority.value > 5) {
     arrErrors.push('Priorytet powinien wynosić od 1 do 5')
   }
 
-
-  const select = document.querySelector('#mySelect')
-  console.log(select.value)
-
-  select.addEventListener('change', () => {
-    console.log(select.value)
-  })
-
-
   if (arrErrors.length > 0) {
-
-    let spanBooks = document.querySelector('.books')
-    if (spanBooks) {
-      spanBooks.remove()
-    }
 
     for (const error of arrErrors) {
       const liError = createElement(
@@ -89,51 +208,22 @@ const submitForm = (event) => {
     return false
   }
 
-  // renderTable()
-
-
-
-  let spanBooks = document.querySelector('.books')
-  if (!spanBooks) {
-    sectionAddedBooks.innerHTML = '<span class="books">Add your books!</span>'
+  const newBook = {
+    title: inputTitle.value,
+    author: inputAuthor.value,
+    priority: inputPriority.value,
+    category: {
+      val: selectCategory.value,
+      desc: selectCategory.options[selectCategory.selectedIndex].text,
+    }
   }
 
-  const bookRow = createElement(
-    'tr',
-    { class: 'book'},
-    {}
-  )
 
-  const bookTitleCell = createElement(
-    'td',
-    { class: 'title' },
-    { innerText: inputTitle.value }
-  )
+  saveBooksToLocalStorage(newBook)
 
-  const bookAuthorCell = createElement(
-    'td',
-    { class: 'author' },
-    { innerText:  inputAuthor.value}
-  )
+  clearForm()
 
-  const bookPriorityCell = createElement(
-    'td',
-    { class: 'priority' },
-    { innerText: inputPriority.value}
-  )
-
-  const bookCategoryCell = createElement(
-    'td',
-    { class: 'category' },
-    { innerText: select.value }
-  )
-
-  bookRow.appendChild(bookTitleCell)
-  bookRow.appendChild(bookAuthorCell)
-  bookRow.appendChild(bookPriorityCell)
-  bookRow.appendChild(bookCategoryCell)
-
-  document.querySelector('table#books-table tbody').appendChild(bookRow)
+  renderTable()
 }
 
 
@@ -143,3 +233,4 @@ console.log(form);
 form.addEventListener(`submit`, submitForm);
 
 
+renderTable()
